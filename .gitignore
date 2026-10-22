@@ -1,0 +1,10 @@
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.ipynb_checkpoints/
+.DS_Store
+# Raw source data are fetched on demand; saved pickled models should not be committed.
+data/raw/*.csv
+results/*.joblib
