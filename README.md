@@ -21,6 +21,12 @@ A reproducible undergraduate machine learning project that compares **K-Nearest 
 
 The experiment removes **exact duplicate rows before splitting** the data, leaving **251 unique records** for this run. This is a substantial reduction and is relevant when interpreting the results. The original CSV is downloaded separately and is not committed to this repository.
 
+## Data-quality audit
+
+The source dataset has **520 records**, of which **251 are distinct rows** in the experiment. Run `python -m src.audit` to generate [the data audit](results/data_audit.md), including exact duplicate counts and class distribution. Identical questionnaire rows are not necessarily the same patient, so this is a modeling choice, not proof of participant-level duplication. The audit is generated locally from the downloaded CSV and can be committed alongside the results.
+
+See [the detailed methodology and validity discussion](docs/methodology.md) for a review of preprocessing, evaluation and limitations.
+
 ## Methodology
 
 1. **Data validation:** Load the UCI CSV, standardize column names and labels, and remove exact duplicate rows.
@@ -71,6 +77,7 @@ Run the following commands from the root of the repository.
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe scripts\download_data.py
+.\.venv\Scripts\python.exe -m src.audit
 .\.venv\Scripts\python.exe -m src.train
 .\.venv\Scripts\python.exe -m pytest -q
 ```
@@ -84,6 +91,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
 python scripts/download_data.py
+python -m src.audit
 python -m src.train
 python -m pytest -q
 ```
@@ -92,6 +100,7 @@ If the automatic dataset download fails, download `diabetes_data_upload.csv` fro
 
 Training writes the following outputs into `results/`:
 
+- `data_audit.md` and `data_audit.json`: source-data counts, class balance, and duplicate audit
 - `metrics.csv` and `metrics.json`: evaluation metrics and experiment details
 - `report.md`: generated results summary
 - `figures/roc_comparison.png`: ROC comparison
@@ -114,19 +123,23 @@ Training writes the following outputs into `results/`:
 ├── src/
 │   ├── __init__.py
 │   ├── data.py
+│   ├── audit.py
 │   ├── modeling.py
 │   └── train.py
 ├── tests/
 │   ├── test_data.py
+│   ├── test_audit.py
 │   └── test_train.py
-├── results/                 # generated metrics, report, and figures
+├── docs/
+│   └── methodology.md
+├── results/                 # generated metrics, data audit, report, and figures
 ├── .gitignore
 ├── LICENSE
 ├── README.md
 └── requirements.txt
 ```
 
-Automated tests validate data processing and training behavior. A GitHub Actions workflow runs the tests on pushes and pull requests.
+Automated tests validate data processing, the data-quality audit, and training behavior. A GitHub Actions workflow runs the tests on pushes and pull requests.
 
 ## Limitations and responsible use
 

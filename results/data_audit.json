@@ -1,0 +1,36 @@
+{
+  "dataset": "UCI Early Stage Diabetes Risk Prediction (ID 529)",
+  "original_rows": 520,
+  "unique_rows": 251,
+  "exact_duplicate_rows": 269,
+  "exact_duplicate_fraction": 0.5173,
+  "predictor_count": 16,
+  "raw_class_counts": {
+    "negative": 200,
+    "positive": 320
+  },
+  "deduplicated_class_counts": {
+    "negative": 78,
+    "positive": 173
+  },
+  "missing_values_by_column": {
+    "age": 0,
+    "gender": 0,
+    "polyuria": 0,
+    "polydipsia": 0,
+    "sudden_weight_loss": 0,
+    "weakness": 0,
+    "polyphagia": 0,
+    "genital_thrush": 0,
+    "visual_blurring": 0,
+    "itching": 0,
+    "irritability": 0,
+    "delayed_healing": 0,
+    "partial_paresis": 0,
+    "muscle_stiffness": 0,
+    "alopecia": 0,
+    "obesity": 0,
+    "class": 0
+  },
+  "deduplication_rule": "drop exact duplicate rows across all 16 predictors and the target, before splitting"
+}
