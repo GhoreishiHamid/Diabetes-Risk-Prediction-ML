@@ -11,7 +11,6 @@ A reproducible undergraduate machine learning project that compares **K-Nearest 
 > **Important:** This is an educational machine learning experiment, **not a clinical diagnostic or medical risk-assessment tool**.
 
 ## Dataset
-
 - **Name:** [Early Stage Diabetes Risk Prediction — UCI Machine Learning Repository (ID 529)](https://archive.ics.uci.edu/dataset/529/early+stage+diabetes+risk+prediction+dataset)
 - **Original records:** 520
 - **Predictor variables:** 16 (age, gender, and questionnaire-based symptoms)
@@ -39,7 +38,6 @@ See [the detailed methodology and validity discussion](docs/methodology.md) for 
 Keeping preprocessing inside the cross-validation pipelines helps avoid leaking validation or test information into model fitting.
 
 ## Results
-
 The following results were produced with `python -m src.train` using the downloaded UCI dataset, `random_state=42`, and a single stratified held-out test split.
 
 | Model | Training CV F1 | Test F1 | Test ROC-AUC | Test Balanced Accuracy |
@@ -96,7 +94,9 @@ python -m src.train
 python -m pytest -q
 ```
 
-If the automatic dataset download fails, download `diabetes_data_upload.csv` from the [UCI dataset page](https://archive.ics.uci.edu/dataset/529/early+stage+diabetes+risk+prediction+dataset) and place it at `data/raw/diabetes_data_upload.csv` before running training.
+If the automatic dataset download fails, download `diabetes_data_upload.csv` from the [UCI dataset page]
+
+(https://archive.ics.uci.edu/dataset/529/early+stage+diabetes+risk+prediction+dataset) and place it at `data/raw/diabetes_data_upload.csv` before running training.
 
 
 Training writes the following outputs into `results/`:
@@ -139,11 +139,9 @@ Training writes the following outputs into `results/`:
 ├── README.md
 └── requirements.txt
 ```
-
 Automated tests validate data processing, the data-quality audit, and training behavior. A GitHub Actions workflow runs the tests on pushes and pull requests.
 
 ## Limitations and responsible use
-
 - The data come from a relatively small, single-site, symptom-based questionnaire dataset and do not represent all patient populations.
 - Removing exact duplicates reduces one possible source of train/test overlap but **does not guarantee participant-level independence** or eliminate other dataset biases.
 - Performance is estimated from one split with only 51 held-out records; results may vary with different splits or populations.
@@ -153,11 +151,6 @@ Automated tests validate data processing, the data-quality audit, and training b
 Possible next steps include repeated or nested cross-validation, uncertainty reporting, a careful duplicate/record-independence audit, and external validation on an independent dataset.
 
 ## License and attribution
-
 The **source code** is released under the [MIT License](LICENSE). The **dataset** belongs to its original contributors and is available through the UCI Machine Learning Repository under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); its license is separate from the code license.
 
 **Dataset citation:** *Early Stage Diabetes Risk Prediction* (2020), UCI Machine Learning Repository, [https://doi.org/10.24432/C5VG8H](https://doi.org/10.24432/C5VG8H).
-
-
-
-
