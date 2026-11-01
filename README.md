@@ -3,6 +3,7 @@
 A reproducible undergraduate machine learning project that compares **K-Nearest Neighbors (KNN)** and **Decision Tree** classifiers on the **UCI Early Stage Diabetes Risk Prediction** dataset. The project covers data preparation, feature encoding and normalization, hyperparameter tuning, model evaluation, and visualization.
 
 **Project focus:** Machine Learning · Data Preprocessing · Classification · Model Evaluation  
+
 **Tools:** Python, pandas, NumPy, scikit-learn, Matplotlib, pytest  
 **Status:** Implemented and evaluated on the original UCI dataset.
 
@@ -142,6 +143,7 @@ Training writes the following outputs into `results/`:
 Automated tests validate data processing, the data-quality audit, and training behavior. A GitHub Actions workflow runs the tests on pushes and pull requests.
 
 ## Limitations and responsible use
+
 - The data come from a relatively small, single-site, symptom-based questionnaire dataset and do not represent all patient populations.
 - Removing exact duplicates reduces one possible source of train/test overlap but **does not guarantee participant-level independence** or eliminate other dataset biases.
 - Performance is estimated from one split with only 51 held-out records; results may vary with different splits or populations.
@@ -151,6 +153,8 @@ Automated tests validate data processing, the data-quality audit, and training b
 Possible next steps include repeated or nested cross-validation, uncertainty reporting, a careful duplicate/record-independence audit, and external validation on an independent dataset.
 
 ## License and attribution
+
 The **source code** is released under the [MIT License](LICENSE). The **dataset** belongs to its original contributors and is available through the UCI Machine Learning Repository under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); its license is separate from the code license.
 
 **Dataset citation:** *Early Stage Diabetes Risk Prediction* (2020), UCI Machine Learning Repository, [https://doi.org/10.24432/C5VG8H](https://doi.org/10.24432/C5VG8H).
+
