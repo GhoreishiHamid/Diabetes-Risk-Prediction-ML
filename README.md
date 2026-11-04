@@ -22,13 +22,11 @@ A reproducible undergraduate machine learning project that compares **K-Nearest 
 The experiment removes **exact duplicate rows before splitting** the data, leaving **251 unique records** for this run. This is a substantial reduction and is relevant when interpreting the results. The original CSV is downloaded separately and is not committed to this repository.
 
 ## Data-quality audit
-
 The source dataset has **520 records**, of which **251 are distinct rows** in the experiment. Run `python -m src.audit` to generate [the data audit](results/data_audit.md), including exact duplicate counts and class distribution. Identical questionnaire rows are not necessarily the same patient, so this is a modeling choice, not proof of participant-level duplication. The audit is generated locally from the downloaded CSV and can be committed alongside the results.
 
 See [the detailed methodology and validity discussion](docs/methodology.md) for a review of preprocessing, evaluation and limitations.
 
 ## Methodology
-
 1. **Data validation:** Load the UCI CSV, standardize column names and labels, and remove exact duplicate rows.
 2. **Train/test split:** Use an 80/20 stratified split with random seed `42` (**200 training** and **51 held-out test** records after deduplication).
 3. **Preprocessing:** Impute missing values, standardize the numeric `age` feature, and one-hot encode categorical features inside scikit-learn pipelines.
@@ -47,27 +45,22 @@ The following results were produced with `python -m src.train` using the downloa
 | Decision Tree | **0.923** | **0.886** | 0.912 | 0.818 |
 
 **Selected model (based on training CV F1): Decision Tree.**
-
 The Decision Tree achieved higher held-out F1, while KNN achieved higher held-out ROC-AUC and balanced accuracy. These are outcomes from one train/test split; they are **not** evidence that either algorithm is universally superior.
 
 ### Evaluation figures
 
 **ROC curves — held-out test set**
-
 ![ROC curve comparison](results/figures/roc_comparison.png)
 
 **KNN — confusion matrix**
-
 ![KNN confusion matrix](results/figures/knn_confusion_matrix.png)
 
 **Decision Tree — confusion matrix**
-
 ![Decision Tree confusion matrix](results/figures/decision_tree_confusion_matrix.png)
 
 For the generated detailed report and machine-readable results, see [results/report.md](results/report.md), [results/metrics.csv](results/metrics.csv), and [results/metrics.json](results/metrics.json).
 
 ## Reproduce the experiment
-
 Run the following commands from the root of the repository.
 
 ### Windows (PowerShell)
@@ -84,7 +77,6 @@ python -m venv .venv
 The original run was performed with **Python 3.13.14** on Windows. The commands above do not require activating the virtual environment.
 
 ### macOS / Linux
-
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
@@ -111,7 +103,6 @@ Training writes the following outputs into `results/`:
 - `best_model.joblib`: selected fitted model, **excluded from Git**
 
 ## Repository structure
-
 ```text
 .
 ├── .github/
@@ -143,7 +134,6 @@ Training writes the following outputs into `results/`:
 Automated tests validate data processing, the data-quality audit, and training behavior. A GitHub Actions workflow runs the tests on pushes and pull requests.
 
 ## Limitations and responsible use
-
 - The data come from a relatively small, single-site, symptom-based questionnaire dataset and do not represent all patient populations.
 - Removing exact duplicates reduces one possible source of train/test overlap but **does not guarantee participant-level independence** or eliminate other dataset biases.
 - Performance is estimated from one split with only 51 held-out records; results may vary with different splits or populations.
@@ -153,8 +143,8 @@ Automated tests validate data processing, the data-quality audit, and training b
 Possible next steps include repeated or nested cross-validation, uncertainty reporting, a careful duplicate/record-independence audit, and external validation on an independent dataset.
 
 ## License and attribution
-
 The **source code** is released under the [MIT License](LICENSE). The **dataset** belongs to its original contributors and is available through the UCI Machine Learning Repository under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); its license is separate from the code license.
 
 **Dataset citation:** *Early Stage Diabetes Risk Prediction* (2020), UCI Machine Learning Repository, [https://doi.org/10.24432/C5VG8H](https://doi.org/10.24432/C5VG8H).
+
 
