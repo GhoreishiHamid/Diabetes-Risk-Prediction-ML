@@ -5,8 +5,11 @@ Run from the repository root: python scripts/download_data.py
 from __future__ import annotations
 
 from io import BytesIO
+
 from pathlib import Path
+
 from urllib.request import Request, urlopen
+
 from zipfile import ZipFile
 
 UCI_ZIP = (
@@ -39,7 +42,6 @@ def main() -> None:
         print("from https://archive.ics.uci.edu/dataset/529/early+stage+diabetes+risk+prediction+dataset")
         print(f"and put it at {DESTINATION}, then rerun training.")
         raise
-
-
+        
 if __name__ == "__main__":
     main()
